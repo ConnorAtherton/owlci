@@ -17,3 +17,6 @@
 
 # ignore bower components
 /vendor/assets/components
+
+# Environment vars
+.env

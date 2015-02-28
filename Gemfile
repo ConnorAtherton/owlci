@@ -22,3 +22,8 @@ gem 'capistrano-rails', group: :development
 gem 'pry'
 gem 'pry-byebug'
 
+gem 'omniauth-github', :github => 'intridea/omniauth-github'
+
+gem 'dotenv-rails', :groups => [:development, :test]
+
+gem "github_api"
