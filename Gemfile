@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'unicorn'
 gem 'haml'
 gem 'haml-rails'
+gem 'rabl-rails'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development

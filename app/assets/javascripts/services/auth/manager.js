@@ -2,7 +2,10 @@ angular.module('AuthManager', [
   'RetryQueue'
 ])
 
-.factory('AuthManager', ['$http', '$q', '$state', 'RetryQueue', '$location', function($http, $q, $state, RetryQueue, $location) {
+.factory('AuthManager', ['$http', '$q', '$state', 'RetryQueue', '$location', 'Restangular',
+    function($http, $q, $state, RetryQueue, $location, Restangular) {
+
+  var userSession = Restangular.one('user_session');
 
   function retry(success) {
     if (success) {
@@ -25,28 +28,8 @@ angular.module('AuthManager', [
       return RetryQueue.retryReason();
     },
 
-    register: function(user) {
-      return $http.post('/register', user).then(function(res) {
-        api.currentUser = res.data.user;
-        if (api.isAuthenticated()) {
-          return RetryQueue.hasMore() ? retry(true) : $state.go('home');
-        }
-        return api.isAuthenticated();
-      });
-    },
-
-    login: function(user) {
-      return $http.post('/login', user).then(function(res) {
-        api.currentUser = res.data.user;
-        if (api.isAuthenticated()) {
-          return RetryQueue.hasMore() ? retry(true) : $state.go('home');
-        }
-        return api.isAuthenticated();
-      });
-    },
-
     logout: function() {
-      $http.post('/logout').then(function() {
+      $http.delete('/api/v1/logout').then(function() {
         api.currentUser = null;
         // make sure to clear the retry queue
         // so it is empty if they try to log back in
@@ -63,8 +46,8 @@ angular.module('AuthManager', [
         // auth provider can resolve it in a route
         return $q.when(api.currentUser);
       } else {
-        return $http.get('/current-user').then(function(res) {
-          api.currentUser = res.data.user;
+        return userSession.get().then(function(res) {
+          api.currentUser = res.user;
           return api.currentUser;
         });
       }
@@ -96,7 +79,7 @@ angular.module('AuthManager', [
     },
 
     forceUserRefresh: function() {
-      return $http.get('/current-user').then(function (res) {
+      return $http.get('/api/v1/user').then(function (res) {
         api.currentUser = res.data.user;
         return api.currentUser;
       });

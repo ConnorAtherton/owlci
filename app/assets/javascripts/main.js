@@ -1,6 +1,7 @@
 angular.module('nghack', [
   'templates',
   'ui.router',
+  'restangular',
 
   'Directives',
   'Services',
@@ -9,8 +10,8 @@ angular.module('nghack', [
 
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
-    function myAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'RestangularProvider',
+    function myAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
 
   $urlRouterProvider.otherwise('/404');
   $locationProvider.html5Mode(true);
@@ -44,6 +45,11 @@ angular.module('nghack', [
       }
     };
   });
+
+  //
+  //  Restnagular conf
+  //
+  RestangularProvider.setBaseUrl('/api/v1/');
 }])
 
 .run(function($rootScope, $state, AuthManager) {
