@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: #F1F3F5;
+  overflow: scroll;
+  color: rgba(0, 0, 0, 0.75);
+  @extend .clearfix;
+}
+
+#hero {
+  min-height: 550px;
+}
+
+#content {
+  width: 100%;
+  background-color: white;
+}
+
+.col-center {
+  float: none !important;
+  margin: 0 auto;
+}
+
+.col-no-padding {
+  padding: 0;
+}
+
+/**
+ * Overrides
+ */
+li {
+  list-style-type: none;
+}
