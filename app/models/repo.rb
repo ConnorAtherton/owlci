@@ -1,8 +1,16 @@
 class Repo < ActiveRecord::Base
   belongs_to :user
+  has_many :builds
 
-  before_save :setup_hook
-  before_destroy :teardown_webook
+  before_create :setup_hook
+  before_destroy :teardown_hook
+
+  def enqueue_build_from_github_webhook(pr)
+    @build = builds.create_from_github_webhook(pr)
+    if @build
+      @build.enqueue_build
+    end
+  end
 
   private
 
@@ -11,7 +19,8 @@ class Repo < ActiveRecord::Base
       full_name,
       'web',
       {
-        url: "http://owlci.club/builds",
+        url: "http://owlci.alpha.ngrok.com/builds",
+        content_type: 'json'
       },
       {
         events: ["pull_request"],
@@ -21,7 +30,7 @@ class Repo < ActiveRecord::Base
     self.hook_id = hook.id
   end
 
-  def teardown_webook
+  def teardown_hook
     user.github.remove_hook(full_name, hook_id)
   end
 end

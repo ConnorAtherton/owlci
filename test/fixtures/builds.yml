@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  repo_id: 
+  action: MyString
+  number: 
+  head_sha: MyString
+  head_ssh_url: MyString
+  base_sha: MyString
+  base_ssh_url: MyString
+  body: MyString
+
+two:
+  repo_id: 
+  action: MyString
+  number: 
+  head_sha: MyString
+  head_ssh_url: MyString
+  base_sha: MyString
+  base_ssh_url: MyString
+  body: MyString
