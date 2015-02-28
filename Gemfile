@@ -6,6 +6,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'angularjs-rails'
+gem 'angular-rails-templates'
 gem 'jquery-rails'
 
 # Use ActiveModel has_secure_password
@@ -13,6 +14,8 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'haml'
+gem 'haml-rails'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development

@@ -1,0 +1,24 @@
+{
+  "name": "owlci",
+  "version": "0.0.1",
+  "authors": [
+    "Connor Atherton <connor@bitnami.com>"
+  ],
+  "description": "sc",
+  "moduleType": [
+    "es6"
+  ],
+  "dependencies": {
+    "angular": "~1.2",
+    "angular-ui-router": "~0.2"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
+}

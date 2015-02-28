@@ -1,8 +1,6 @@
 angular.module('nghack', [
-  'btford.socket-io',
   'templates',
   'ui.router',
-  'ngResource',
 
   'Directives',
   'Services',
@@ -20,11 +18,11 @@ angular.module('nghack', [
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "home.tpl.html",
+      templateUrl: "home.html",
     })
     .state('about', {
       url: "/about",
-      templateUrl: "about.tpl.html",
+      templateUrl: "about.html",
       resolve: {
         loggedIn: function (AuthManager) {
           return AuthManager.requireAuthenticatedUser('about');
@@ -33,7 +31,7 @@ angular.module('nghack', [
     })
     .state('404', {
       url: "/404",
-      templateUrl: "404.tpl.html",
+      templateUrl: "404.html",
     });
 
   $httpProvider.interceptors.push(function($q, $location, $rootScope) {

@@ -3,6 +3,5 @@ angular.module('AuthService', [
   // 'Services.Authinterceptor',
   'AuthManager',
   'RetryQueue',
-  'Login',
-  'Register'
+  'Login'
 ]);

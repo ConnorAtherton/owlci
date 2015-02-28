@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+%html(lang="en" ng-app="nghack")
+  %head
+    <title>Owl</title>
+    %link(rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lato:100,400,900')
+    %link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+  %head
+  %body(ng-controller='AppCtrl' ng-class="currentAppClass")
+
+    = yield
+
+    = javascript_include_tag 'application'
+  %body
+%html

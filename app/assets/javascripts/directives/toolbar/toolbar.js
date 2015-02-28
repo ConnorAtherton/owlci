@@ -7,7 +7,7 @@ angular.module('toolbar', [
 .directive('loginToolbar', ['AuthManager',
   function(AuthManager) {
     var directive = {
-      templateUrl: 'directives/toolbar/toolbar.tpl.html',
+      templateUrl: 'toolbar/toolbar.html',
       restrict: 'E',
       replace: true,
       scope: true,
@@ -18,13 +18,14 @@ angular.module('toolbar', [
         $scope.currentUser = null;
 
         $scope.$watch(function() {
-            return AuthManager.currentUser;
-          },
-          function(currentUser) {
-            $scope.currentUser = currentUser;
-          });
+          return AuthManager.currentUser;
+        },
+        function(currentUser) {
+          $scope.currentUser = currentUser;
+        });
       }
     };
+
     return directive;
   }
 ]);
