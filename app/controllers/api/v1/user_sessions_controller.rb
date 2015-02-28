@@ -6,7 +6,7 @@ class Api::V1::UserSessionsController < Api::V1::BaseController
     respond_with @current_user
   end
 
-  def delete
+  def destroy
     session.delete(:user_id)
     render nothing: true, status: :ok
   end

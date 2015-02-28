@@ -29,7 +29,7 @@ angular.module('AuthManager', [
     },
 
     logout: function() {
-      $http.delete('/api/v1/logout').then(function() {
+      userSession.remove().then(function() {
         api.currentUser = null;
         // make sure to clear the retry queue
         // so it is empty if they try to log back in
@@ -47,7 +47,7 @@ angular.module('AuthManager', [
         return $q.when(api.currentUser);
       } else {
         return userSession.get().then(function(res) {
-          api.currentUser = res.user;
+          api.currentUser = res;
           return api.currentUser;
         });
       }
