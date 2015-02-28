@@ -1,4 +1,4 @@
-angular.module('RetryQueue', [])
+angular.module('services')
 
 // This is a generic retry queue for security failures. Each item is expected to expose two functions: retry and cancel.
 .factory('RetryQueue', ['$q', '$log',

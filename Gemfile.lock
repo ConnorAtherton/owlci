@@ -42,6 +42,8 @@ GEM
       tilt
     angularjs-rails (1.3.14)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (3.1.1.20141001)
+      execjs
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -74,6 +76,7 @@ GEM
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
     erubis (2.7.0)
+    escape_utils (1.0.1)
     execjs (2.3.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -99,6 +102,8 @@ GEM
     json (1.8.2)
     jwt (1.3.0)
     kgio (2.9.3)
+    languages (1.0.1)
+      escape_utils (~> 1.0)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -208,12 +213,14 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates
   angularjs-rails
+  autoprefixer-rails
   capistrano-rails
   coffee-rails (~> 4.0.0)
   dotenv-rails
   haml
   haml-rails
   jquery-rails
+  languages
   octokit
   omniauth-github!
   pry

@@ -1,11 +1,8 @@
-angular.module('toolbar', [
-  'AuthManager'
-])
+angular.module('directives')
 
 // The loginToolbar directive is a reusable widget that can show login or logout buttons
 // and information the current authenticated user
-.directive('loginToolbar', ['AuthManager',
-  function(AuthManager) {
+.directive('loginToolbar', ['AuthManager', function(AuthManager) {
     var directive = {
       templateUrl: 'toolbar/toolbar.html',
       restrict: 'E',

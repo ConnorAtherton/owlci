@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def github
+    Octokit.auto_paginate = true
     @github ||= Octokit::Client.new access_token: access_token
   end
 end

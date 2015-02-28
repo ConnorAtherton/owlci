@@ -1,13 +1,11 @@
-angular.module('nghack', [
+angular.module('owlci', [
   'templates',
   'ui.router',
   'restangular',
 
-  'Directives',
-  'Services',
-
-  'Dashboard'
-
+  'services',
+  'controllers',
+  'directives'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'RestangularProvider',
@@ -33,6 +31,21 @@ angular.module('nghack', [
     .state('404', {
       url: "/404",
       templateUrl: "404.html",
+    })
+    .state('dashboard', {
+      url: '/dashboard',
+      controller: 'DashboardController',
+      templateUrl: 'dashboard/dashboard.html'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'login/login.html',
+      controller: 'LoginController',
+      resolve: {
+        redirect: function(AuthManager) {
+          return AuthManager.redirectIfAuthenticated();
+        }
+      }
     });
 
   $httpProvider.interceptors.push(function($q, $location, $rootScope) {
@@ -59,6 +72,7 @@ angular.module('nghack', [
 }])
 
 .run(function($rootScope, $state, AuthManager) {
+
   // Check to see if a user is already logged in
   // from a previous session.
   AuthManager.requestCurrentUser();

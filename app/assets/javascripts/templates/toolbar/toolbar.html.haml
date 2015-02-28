@@ -1,8 +1,10 @@
 %nav.navbar.navbar-default
-  %a(ui-sref="home") OwlCI
+  %ul.nav.navbar-nav.pull-left
+    %a(ui-sref="home") OwlCI
+
   %ul.nav.navbar-nav.pull-right.auth-controls
     %li(ng-hide='isAuthenticated()')
-      %a.login(ng-click="loginWith('github')")
+      %a.login.button(ng-click="loginWith('github')")
         %span(ng-if="isAuthenticating")
           %span.ball-pulse
             %span
@@ -11,8 +13,8 @@
 
         %span(ng-if="!isAuthenticating")
           %i.fa.fa-github
-          %span Sign up with GitHub
+          %span.with-fa-icon Sign up with GitHub
 
     %li(ng-show='isAuthenticated()')
-      %a.logout(ng-click='logout()') Logout
+      %a.logout.button(ng-click='logout()') Logout
 

@@ -5,5 +5,12 @@
 //= require lodash/dist/lodash
 //
 //= require_tree ./templates
+//= require controllers
+//= require services
+//= require directives
 //
-//= require_tree .
+//= require_tree ./controllers
+//= require_tree ./services
+//= require_tree ./directives
+//
+//= require main

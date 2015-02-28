@@ -1,15 +1,11 @@
-angular.module('Dashboard', [])
+angular.module('controllers')
 
-.config(['$stateProvider', function($stateProvider) {
+.controller('DashboardController', ['$scope', 'RepoService', function($scope, RepoService) {
+  $scope.repos = undefined;
 
-  $stateProvider
-    .state('dashboard', {
-      url: '/dashboard',
-      controller: 'DashboardController',
-      templateUrl: 'dashboard/dashboard.tpl.html'
-    });
-}])
-
-.controller('DashboardController', ['$scope', function() {
+  RepoService.all().then(function(data) {
+    $scope.repos = data;
+    $scope.styleClass = "reposLoaded";
+  });
 
 }]);

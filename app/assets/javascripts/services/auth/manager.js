@@ -1,6 +1,4 @@
-angular.module('AuthManager', [
-  'RetryQueue'
-])
+angular.module('services')
 
 .factory('AuthManager', ['$http', '$q', '$state', 'RetryQueue', '$location', 'Restangular',
     function($http, $q, $state, RetryQueue, $location, Restangular) {
@@ -21,7 +19,6 @@ angular.module('AuthManager', [
     }
   });
 
-  // The public API of the service
   var api = {
 
     getLoginReason: function() {

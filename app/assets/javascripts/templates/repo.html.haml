@@ -1,0 +1,12 @@
+%section.container.repo-container(style='border-left: 5px solid {{repo.language_color}}')
+  .column.two-thirds
+    %h2 {{repo.name}}
+    %span.stars
+      {{repo.stars}}
+  .column.one-third
+    .button(ng-click="invertWebhook()" ng-class="{{repo.status}}")
+      Add hook
+    %strong
+      {{repo.status}}
+
+

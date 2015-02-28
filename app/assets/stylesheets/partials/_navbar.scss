@@ -7,7 +7,6 @@
   line-height: 60px;
   padding: 10px;
   vertical-align: middle;
-  margin-bottom: 0;
 
   .navbar-default {
     background: transparent;
@@ -15,7 +14,7 @@
   }
 
   .navbar-nav {
-    margin: 0 1.5em;
+    margin: 0 3em;
   }
 
   .navbar-nav > li {
@@ -23,28 +22,11 @@
   }
 
   .navbar-nav > li > a,  a {
-    margin: 10px;
-    padding: 0.5em 1em;
-    color: white;
-    font-weight: 400;
-    font-size: 16px;
-    text-decoration: none;
     color: #6a99f0;
-
-
-    &:hover {
-      color: darken(#6199f0, 10%);
-      cursor: pointer;
-    }
   }
 
-  .auth-controls a {
-    border: 1px solid #6a99f0;
-    border-radius: 20px;
-
-    &.login span > span {
-      padding-left: 0.4em;
-    }
+  .with-fa-icon {
+    padding-left: 0.4em;
   }
 }
 

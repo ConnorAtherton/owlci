@@ -1,23 +1,5 @@
-angular.module('Login', [
-  'AuthManager'
-])
+angular.module('controllers')
 
-.config(function($stateProvider) {
+.controller('LoginController', ['$scope', '$window', 'AuthManager', function LoginCtrl($scope, $window, AuthManager) {
 
-  $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl: 'services/auth/login/login.tpl.html',
-      controller: 'LoginCtrl',
-      resolve: {
-        redirect: function(AuthManager) {
-          return AuthManager.redirectIfAuthenticated();
-        }
-      }
-    });
-
-})
-
-.controller('LoginCtrl', function LoginCtrl($scope, $window, AuthManager) {
-
-});
+}]);
