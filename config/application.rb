@@ -15,5 +15,9 @@ module Owl
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+
+    # Turn off JS, CSS and HTML generators
+    config.generators.assets = false
+    config.generators.template_engine = false
   end
 end

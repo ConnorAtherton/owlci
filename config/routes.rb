@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :builds, only: :create
   get '*path' => 'main#index'
 end

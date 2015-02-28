@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228100912) do
+ActiveRecord::Schema.define(version: 20150228200414) do
+
+  create_table "builds", force: true do |t|
+    t.integer  "repo_id"
+    t.string   "action"
+    t.integer  "number"
+    t.string   "head_sha"
+    t.string   "head_repo_full_name"
+    t.string   "head_ssh_url"
+    t.string   "base_sha"
+    t.string   "base_repo_full_name"
+    t.string   "base_ssh_url"
+    t.string   "title"
+    t.string   "html_url"
+    t.integer  "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "builds", ["repo_id"], name: "index_builds_on_repo_id"
 
   create_table "repos", force: true do |t|
     t.string   "full_name"
@@ -22,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150228100912) do
     t.integer  "hook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ssh_url"
   end
 
   create_table "users", force: true do |t|
