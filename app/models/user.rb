@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :repos
+
   def self.find_or_create_from_auth_hash auth_hash
     @user = User.find_or_initialize_by(email: auth_hash["info"]["email"])
     @user.name = auth_hash["info"]["name"]
@@ -12,8 +14,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def get_repos
-    github = Github.new oauth_token: access_token
-    github.repos.list
+  def github
+    @github ||= Octokit::Client.new access_token: access_token
   end
 end
