@@ -10,7 +10,8 @@
   ],
   "dependencies": {
     "angular": "~1.2",
-    "angular-ui-router": "~0.2"
+    "angular-ui-router": "~0.2",
+    "normalize.css": "~3.0.2"
   },
   "license": "MIT",
   "ignore": [
