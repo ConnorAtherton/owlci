@@ -22,12 +22,12 @@ angular.module('nghack', [
     })
     .state('about', {
       url: "/about",
-      templateUrl: "about.html",
-      resolve: {
-        loggedIn: function (AuthManager) {
-          return AuthManager.requireAuthenticatedUser('about');
-        }
-      }
+      templateUrl: "about.html"
+      // resolve: {
+      //   loggedIn: function (AuthManager) {
+      //     return AuthManager.requireAuthenticatedUser('about');
+      //   }
+      // }
     })
     .state('404', {
       url: "/404",
