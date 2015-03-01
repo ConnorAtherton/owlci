@@ -1,4 +1,3 @@
-object :@repo
-attributes :id, :full_name, :ssh_url, :html_url, :private
-node(:active) { |_| true }
-node(:has_yml) { |repo| repo.has_owl_yml? }
+collection :@builds
+attributes :id, :head_sha, :base_sha, :results, :average_score, :repo_id, :head_repo_full_name,
+            :html_url, :title, :number

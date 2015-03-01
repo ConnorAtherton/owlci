@@ -25,9 +25,30 @@
   border: 1px solid #bbb;
   color: #555;
 
+  @mixin color-button($color) {
+    color: $color;
+    border: 1px solid $color;
+  }
+
   &.no_yml {
     color: $orange;
     border: 1px solid $orange;
+  }
+
+  &.caution.message {
+    @include color-button($orange);
+  }
+
+  &.danger.message {
+    @include color-button($red);
+  }
+
+  &.success.message {
+    @include color-button($green);
+  }
+
+  &.message {
+    @include color-button($primary);
   }
 
   @mixin hover-color($color) {

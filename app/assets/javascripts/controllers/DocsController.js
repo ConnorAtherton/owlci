@@ -5,6 +5,7 @@ angular.module('controllers')
   $stateProvider
     .state('docs', {
       url: "/docs",
+      controller: 'DocsController',
       templateUrl: "docs.html",
     });
 }])

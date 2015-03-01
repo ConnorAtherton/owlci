@@ -14,7 +14,6 @@ class BuildWorker
       return
     end
     @build.update_attribute(:state, :in_progress)
-    @paths = { home: "/", about: "/intl/en/about/" }
     begin
       @relative_build_dir = File.join("/", "public", "builds", @build.repo.full_name, @build.number.to_s, @build.id.to_s)
       @build_dir = File.join(Rails.root, @relative_build_dir)
@@ -22,23 +21,33 @@ class BuildWorker
       Dir.chdir(@build_dir) do
         # Setup wraith
         FileUtils.cp(WRAITH_SNAP_JS, @build_dir)
-        # Clone repo, setup owl and wraith
-        clone_repo
-        checkout_sha(@build.head_sha)
-        setup_owl
-        write_config("http://localhost:5100")
-        # Start base code
-        checkout_sha(@build.base_sha)
-        run_app
-        # Run wraith for baseline
-        run_wraith("history")
-        kill_app
-        # Checkout changes in head
-        checkout_sha(@build.head_sha)
-        run_app
-        # Run wraith with changes
-        run_wraith("latest")
-        kill_app
+
+        if Rails.env.development?
+          @paths = { home: "/", about: "/intl/en/about/" }
+          write_config("http://google.com")
+          run_wraith("history")
+          write_config("http://google.co.uk")
+          run_wraith("latest")
+        else
+          # Clone repo, setup owl and wraith
+          clone_repo
+          checkout_sha(@build.head_sha)
+          setup_owl
+          write_config("http://localhost:5100")
+          # Start base code
+          checkout_sha(@build.base_sha)
+          run_app
+          # Run wraith for baseline
+          run_wraith("history")
+          kill_app
+          # Checkout changes in head
+          checkout_sha(@build.head_sha)
+          run_app
+          # Run wraith with changes
+          run_wraith("latest")
+          kill_app
+        end
+
         @build.results = get_results
       end
       @build.state = :finished
@@ -148,10 +157,12 @@ class BuildWorker
       shots = File.join("shots", label.to_s)
       thumbs = File.join("shots", "thumbnails", label.to_s)
       res.tap do |h|
+        asset_dir = @relative_build_dir.gsub /^\/public/, ""
+
         h[label] = {
           score: File.open(File.join(@build_dir, shots, "#{file_prefix}data.txt")).read.to_f,
-          shots_path: File.join(@relative_build_dir, shots),
-          thumbs_path: File.join(@relative_build_dir, thumbs),
+          shots_path: File.join(asset_dir, shots),
+          thumbs_path: File.join(asset_dir, thumbs),
           head: "#{file_prefix}build_latest.png",
           base: "#{file_prefix}build.png",
           diff: "#{file_prefix}diff.png"

@@ -13,7 +13,10 @@
     "angular-ui-router": "~0.2",
     "normalize.css": "~3.0.2",
     "restangular": "~1.4.0",
-    "tipsy": "~0.1.7"
+    "tipsy": "~0.1.7",
+    "bower": "*",
+    "install": "~1.0.4",
+    "screenfull": "~2.0.0"
   },
   "license": "MIT",
   "ignore": [
@@ -23,5 +26,8 @@
     "vendor/assets/components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.3.14"
+  }
 }

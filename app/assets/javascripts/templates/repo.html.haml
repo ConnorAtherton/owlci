@@ -1,18 +1,22 @@
 %section.container.repo-container(style='border-left: 5px solid {{repo.language_color}}')
   .column.two-thirds
-    %h3
-      {{repo.name}}
-      -# %small.stars
-      -#   {{repo.stars}}
+    %section(ng-if="repo.active && repo.has_yml")
+      %a(ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
+        %h3
+          {{repo.name}}
+    %section(ng-if="!(repo.active && repo.has_yml)")
+      %h3
+        {{repo.name}}
 
   .column.one-third
     %div.u-full-width.u-cf(ng-if="repo.active && !requestInProgress")
       %div.column.one-third.u-pull-right
         %span.circle-button.danger.tipsy-trigger(ng-click="invertWebhook()" tipsy tipsy-dir="s" title="{{deleteTitle}}")
           %i.fa.fa-close
-      %div.column.one-third.u-pull-right
-        %span.circle-button.success(ng-if="repo.has_yml")
-          %i.fa.fa-file-image-o
+      %div.column.one-third.u-pull-right(ng-if="repo.has_yml")
+        %a(ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
+          %span.circle-button.success
+            %i.fa.fa-file-image-o
       %div.column.one-third.success.u-pull-right
         %span.circle-button.caution.no_yml(ng-if="!repo.has_yml" tipsy tipsy-dir="s" title="{{noYmlTitle}}" ui-sref="docs")
           %i.fa.fa-exclamation

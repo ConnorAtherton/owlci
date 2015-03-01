@@ -23,4 +23,8 @@ class Build < ActiveRecord::Base
   def enqueue_build
     BuildWorker.perform_async(id)
   end
+
+  def average_score
+    results.map {|k, v| v}.inject(0) {|a, o| a + (100 - o[:score])} / results.count
+  end
 end
