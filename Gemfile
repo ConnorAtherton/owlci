@@ -38,3 +38,4 @@ gem 'sidekiq'
 
 gem 'wraith'
 
+gem 'docker-api', :require => 'docker'
