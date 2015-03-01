@@ -1,0 +1,11 @@
+%section#builds-container
+  .wrapper
+    .u-pull-right {{selectedBuild.average_score}}
+    .slide.u-cf(ng-repeat="(key, res) in selectedBuild.results")
+      %h4 /{{key}}
+      .img-wrap
+        %img(src="{{res.shots_path}}/{{res.base}}" fullscreen)
+      .img-wrap
+        %img(src="{{res.shots_path}}/{{res.head}}" fullscreen)
+      .img-wrap(fullsize)
+        %img(src="{{res.shots_path}}/{{res.diff}}" fullscreen)

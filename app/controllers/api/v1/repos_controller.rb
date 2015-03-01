@@ -19,12 +19,22 @@ class Api::V1::ReposController < Api::V1::BaseController
     @repos = active.concat @repos
   end
 
+  def show
+    @repo = if params.try(:[], :use_full_name)
+              current_user.repos.find_by full_name: params[:id].sub(/_/, "/")
+            else
+              current_user.repos.find params[:id]
+            end
+
+    @builds = @repo.nil? ? [] : @repo.builds
+  end
+
   def create
     params = repo_params
     @repo = Repo.new(params)
 
     if @repo.save
-      render 'api/v1/repos/show'
+      render 'api/v1/repos/create'
     else
       render status: :error
     end
@@ -39,7 +49,7 @@ class Api::V1::ReposController < Api::V1::BaseController
   private
 
   def repo_params
-    permitted = [:full_name, :private, :html_url, :ssh_url, :user_id]
+    permitted = [:id, :full_name, :private, :html_url, :ssh_url, :user_id]
     params[:repo].merge(user_id: current_user.id).permit(permitted)
   end
 end

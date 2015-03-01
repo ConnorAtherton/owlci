@@ -5,6 +5,7 @@
 //= require lodash/dist/lodash
 //= require misc/animate
 //= require tipsy/src/javascripts/jquery.tipsy.js
+//= require screenfull/dist/screenfull
 //
 // Code not specific to angular
 //= require custom

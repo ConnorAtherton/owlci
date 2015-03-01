@@ -1,0 +1,39 @@
+#state-builds {
+
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+
+    .slide {
+      border-radius: 4px;
+      border: 1px solid $gray;
+      margin: 2em 0;
+      background-color: #fff;
+    }
+
+    h4 {
+      @include small-text;
+      font-size: 14px;
+      padding: 2em;
+    }
+  }
+
+  .img-wrap {
+    width: 33.33%;
+    float: left;
+    position: relative;
+    border: 1px dashed #f1f1f1;
+
+    img {
+      max-width: 100%;
+      opacity: 0.9;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
