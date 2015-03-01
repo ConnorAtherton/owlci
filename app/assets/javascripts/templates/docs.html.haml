@@ -1,1 +1,50 @@
-%h2 welcome to the docs
+%section.container.docs-container
+  %h2 getting started
+  %p
+    To get started with Owl CI, create the
+    %span.pre .owl.yml
+    configuration file in the root of the repository you would like to add.
+  %pre
+    :plain
+        docker: # optional
+        image: ubuntu:latest
+        port: 80
+        volume: /opt/owl/build/app
+
+      start: npm install && node server.js # required
+
+      paths: # required
+        home: /
+        about: /about
+        contact: /contact
+
+  %h2 docker
+  %p
+    Owl CI runs your app's builds inside docker containers. By default, this
+    is a ubuntu container, and your app is expected to be accessible on port 80.
+  %p
+    As shown above, you can change the docker image (pulled from Docker Hub) and
+    the port that it is running on. This is particularly useful if your app
+    required specific dependencies that would be difficult and/or timely to
+    setup. Instead of doing this on each build, you can create a docker image
+    locally and push it to Docker Hub.
+
+  %p
+    In addition to the image and port, you can specify the volume that your
+    repository will be mounted into. This is useful if your container has a HTTP
+    server setup to serve a particular directory in the file system.
+
+  %h2 start command
+  %p
+    This is the command that will be run to start your application. It is run in
+    the same root directory of your repository.
+
+  %h2 paths
+  %p
+    These are a key-value list of paths that owl will run it's visual tests on.
+    The key is a unique label to identify the route, whilst the value is the
+    relative path.
+  %p
+    For example, if you visit your website's about page at
+    http://example.com/about, then the relative path will be /about.
+
