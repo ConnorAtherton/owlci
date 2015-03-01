@@ -13,6 +13,7 @@ class BuildsController < ApplicationController
         head(:internal_server_error)
       end
     else # pull_request
+      return head(:ok) unless ["opened", "synchronize"].include? pull_request_params[:build][:action]
       if @repo.enqueue_build_from_github_webhook(pull_request_params)
         head(:ok)
       else
@@ -41,9 +42,12 @@ class BuildsController < ApplicationController
 
   def pull_request_params
     params.permit(
-      :action,
       :number,
+      build: [
+        :action
+      ],
       pull_request: [
+        :id,
         :title,
         :html_url,
         head: [
