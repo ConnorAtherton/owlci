@@ -15,9 +15,10 @@
           %i.fa.fa-github
           %span.with-fa-icon Sign up with GitHub
 
-  %ul.nav.navbar-nav.pull-right.auth-controls(ng-show="isAuthenticated()")
+  %ul.nav.navbar-nav.pull-right(ng-show="isAuthenticated()")
     %li
       %a(ui-sref="dashboard") Dashboard
-      %a.logout.button(ng-click='logout()') Logout
+    %li
+      %a(ng-click='logout()') Logout
 
 

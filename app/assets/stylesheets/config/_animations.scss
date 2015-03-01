@@ -161,7 +161,7 @@ $amount: 50px;
     width: 10px;
     height: 10px;
     border-radius: 100%;
-    border: 1px solid #6a99f0;
+    border: 1px solid $primary;
 
     &:nth-of-type(1) {
       top: $amount;

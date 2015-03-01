@@ -22,16 +22,17 @@
     a {
       @include small-text();
 
+      color: $primary;
       padding: 0 30px;
     }
-  }
 
-  .navbar-nav > li {
-    float: left;
-  }
+    .button {
+      border-color: $primary;
+    }
 
-  .navbar-nav > li > a,  a {
-    color: #6a99f0;
+    li {
+      display: inline-block !important;
+    }
   }
 
   .with-fa-icon {
