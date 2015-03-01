@@ -1,3 +1,7 @@
+.docs-container {
+  max-width: 700px;
+}
+
 #state-home {
   display: -webkit-flex;
   display: flex;
@@ -44,6 +48,9 @@
         text-align: left;
         padding: 1em 2em 0;
         margin-bottom: 0;
+        max-width: 275px;
+        text-align: center;
+        margin: auto;
       }
 
       ol {
