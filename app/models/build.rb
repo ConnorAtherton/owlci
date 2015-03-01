@@ -57,10 +57,9 @@ Label | Route | Base | Head | Diff
 ----- | ----- | ---- | ---- | ---
 EOF
     results.each do |label, result|
-      thumbs = result[:thumbs_path].gsub /^\/public/, ''
-      base = File.join("http://owlci.beta.ngrok.com", thumbs, result[:base])
-      head = File.join("http://owlci.beta.ngrok.com", thumbs, result[:head])
-      diff = File.join("http://owlci.beta.ngrok.com", thumbs, result[:diff])
+      base = File.join(Rails.application.secrets.site_url, thumbs, result[:base])
+      head = File.join(Rails.application.secrets.site_url, thumbs, result[:head])
+      diff = File.join(Rails.application.secrets.site_url, thumbs, result[:diff])
       body += [
         label,
         result[:route],
