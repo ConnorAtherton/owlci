@@ -2,9 +2,18 @@ angular.module('controllers')
 
 .controller('RepoController', ['$scope', 'RepoService', function($scope, RepoService) {
 
+  $scope.requestInProgress = false;
+
   $scope.invertWebhook = function() {
-    console.log('should be inverting the status of,', $scope.repo.name);
-    $scope.repo.status = 'tracking';
+    $scope.requestInProgress = true;
+
+    RepoService.createHook($scope.repo).then(function(data) {
+      $scope.repo.status = 'tracking';
+    }, function(err) {
+      console.log('Err bro,', err);
+    }, function() {
+      $scope.requestInProgress = false;
+    });
   };
 
 }]);

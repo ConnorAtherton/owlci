@@ -9,6 +9,12 @@ angular.module('services')
       return repos.getList().then(function(data) {
         return data;
       });
+    },
+
+    createHook: function(repo) {
+      return repos.post({repo: repo}).then(function(res) {
+        debugger
+      });
     }
   }
 
