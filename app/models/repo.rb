@@ -12,6 +12,10 @@ class Repo < ActiveRecord::Base
     end
   end
 
+  def name
+    full_name.split("/").last
+  end
+
   private
 
   def setup_hook

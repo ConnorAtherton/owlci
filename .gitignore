@@ -20,3 +20,5 @@
 
 # Environment vars
 .env
+public/builds/
+dump.rdb

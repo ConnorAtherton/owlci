@@ -33,3 +33,7 @@ gem 'omniauth-github', :github => 'intridea/omniauth-github'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'sidekiq'
+
+gem 'wraith'
+

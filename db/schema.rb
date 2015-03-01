@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228200414) do
+ActiveRecord::Schema.define(version: 20150301021429) do
 
   create_table "builds", force: true do |t|
     t.integer  "repo_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150228200414) do
     t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "results"
   end
 
   add_index "builds", ["repo_id"], name: "index_builds_on_repo_id"
