@@ -33,7 +33,7 @@ class Repo < ActiveRecord::Base
       full_name,
       'web',
       {
-        url: "http://owlci.alpha.ngrok.com/builds",
+        url: File.join(Rails.application.secrets.site_url, "/builds"),
         content_type: 'json'
       },
       {
