@@ -32,21 +32,21 @@
   }
 
   &:hover {
-    @include hover-color(#3c94d3);
+    @include hover-color($primary);
 
     background: #fff;
     cursor: pointer;
 
     &.caution {
-      @include hover-color(orange);
+      @include hover-color($orange);
     }
 
     &.danger {
-      @include hover-color(red);
+      @include hover-color($red);
     }
 
     &.success {
-      @include hover-color(green);
+      @include hover-color($green);
     }
   }
 }

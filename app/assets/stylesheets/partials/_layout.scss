@@ -4,19 +4,8 @@ html, body {
 }
 
 body {
-  background-color: #F1F3F5;
   overflow: scroll;
   color: rgba(0, 0, 0, 0.75);
-  @extend .clearfix;
-}
-
-#hero {
-  min-height: 550px;
-}
-
-#content {
-  width: 100%;
-  background-color: white;
 }
 
 .col-center {
@@ -34,3 +23,7 @@ body {
 li {
   list-style-type: none;
 }
+
+/**
+ *
+ */
