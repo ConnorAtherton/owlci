@@ -25,6 +25,6 @@ class Build < ActiveRecord::Base
   end
 
   def average_score
-    results.map {|k, v| v}.inject(0) {|a, o| a + o[:score]} / results.count
+    results.map {|k, v| v}.inject(0) {|a, o| a + (100 - o[:score])} / results.count
   end
 end

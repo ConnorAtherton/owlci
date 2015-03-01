@@ -120,4 +120,12 @@ angular.module('owlci', [
     AuthManager.logout();
   }
 
+  $scope.loadingMessage = (function() {
+    var messages = ['Hey, we are just loading your github information',
+                    'Just fetching data, we\'ll be with you asap',
+                    'Ooo look, pretty circles']
+
+    return messages[Math.floor(Math.random() * messages.length)];
+  })();
+
 }]);

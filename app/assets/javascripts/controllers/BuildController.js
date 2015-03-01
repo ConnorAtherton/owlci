@@ -17,6 +17,7 @@ angular.module('controllers')
     function($scope, $stateParams, Restangular) {
 
   $scope.selectedBuild = undefined;
+  $scope.styleClass = undefined;
 
   var repo_obj = $stateParams.repo_obj;
   var full_name = ($stateParams.user + '/' + $stateParams.repo).replace('/', '_');
@@ -26,6 +27,7 @@ angular.module('controllers')
     repo_obj.get().then(function(data) {
       $scope.builds = data;
       $scope.selectedBuild = $scope.builds[0];
+      $scope.styleClass = "buildLoaded";
     });
   } else {
     var repo = Restangular.one('repos', full_name );
@@ -33,13 +35,17 @@ angular.module('controllers')
     repo.get({use_full_name: true}).then(function(data) {
       $scope.builds = data;
       $scope.selectedBuild = $scope.builds[0];
+      $scope.styleClass = "buildLoaded";
     });
   }
 
-  $scope.open = function(first, second) {
-    var scope = {
-      src: first + second
-    }
-    ngDialog.open({ template: 'popupTmpl.html', scope: scope });
+  $scope.successMeasure = function(score) {
+    score = 100 - score;
+
+    if (score > 85) return "good";
+    if (score > 60) return "okay";
+
+    return "bad";
   }
+
 }]);

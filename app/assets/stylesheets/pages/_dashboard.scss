@@ -2,22 +2,23 @@
   max-width: 650px;
   transform-origin: 0 0;
   transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
-  transition: all 400ms linear;
   margin: 0 auto;
   opacity: 0;
   border: 1px solid $gray;
   border-radius: 4px;
   margin: 6em auto 5em;
+  transform: translateY(10px);
 
   &.reposLoaded {
     transform: scale(1);
+    transform: translateY(-10px);
     transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
     opacity: 1;
   }
 
 }
 
-#dashboard-loading {
+#loading {
   max-width: 450px;
   margin: 0 auto;
   display: flex;

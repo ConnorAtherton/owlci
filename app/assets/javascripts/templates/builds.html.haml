@@ -1,8 +1,40 @@
-%section#builds-container
+%section#loading.flex(ng-hide="selectedBuild")
+  %h5 {{loadingMessage}}
+  .loader
+    .ball-triangle-path
+      %span
+      %span
+      %span
+
+%section#builds-container(class="{{styleClass}}")
   .wrapper
-    .u-pull-right {{selectedBuild.average_score}}
+    #meta.cf
+      .two-thirds.column
+        %h2 {{selectedBuild.head_repo_full_name}}
+        %h3
+          %small with pull request \#{{selectedBuild.number}}:
+          {{selectedBuild.title}}
+      .button-wrap
+
+        .button.u-pull-right
+          %a(href="{{selectedBuild.html_url}}")
+            %i.fa.fa-github
+            %span.with-fa-icon View on github
+          %section
+            Average Similiarity score: {{selectedBuild.average_score}}%
+
     .slide.u-cf(ng-repeat="(key, res) in selectedBuild.results")
       %h4 /{{key}}
+      %span.score.u-pull-right
+        Similiarity score: {{100 - res.score}}%
+      %span.feedback(ng-switch on="successMeasure(res.score)")
+        %span.circle-button.success.message(ng-switch-when="good")
+          %i.fa.fa-thumbs-o-up
+        %span.circle-button.caution.message(ng-switch-when="okay")
+          %i.fa.fa-exclamation
+        %span.circle-button.danger.message(ng-switch-when="bad")
+          %i.fa.fa-thumbs-o-down
+
       .img-wrap
         %img(src="{{res.shots_path}}/{{res.base}}" fullscreen)
       .img-wrap
