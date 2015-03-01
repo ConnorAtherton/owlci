@@ -5,6 +5,7 @@
 //= require lodash/dist/lodash
 //= require typewriter.js/typewriter.min.js
 //= require misc/animate
+//= require tipsy/src/javascripts/jquery.tipsy.js
 //
 // Code not specific to angular
 //= require custom

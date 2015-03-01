@@ -1,6 +1,9 @@
 angular.module('controllers')
 
 .controller('RepoController', ['$scope', 'RepoService', function($scope, RepoService) {
+  $scope.deleteTitle = "Delete webhook";
+  $scope.noYmlTitle = "You have no .owl.yml file in the root of your repo. " +
+                      "Click here to get set up";
 
   $scope.requestInProgress = false;
 

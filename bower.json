@@ -12,7 +12,8 @@
     "angular": "~1.2",
     "angular-ui-router": "~0.2",
     "normalize.css": "~3.0.2",
-    "restangular": "~1.4.0"
+    "restangular": "~1.4.0",
+    "tipsy": "~0.1.7"
   },
   "license": "MIT",
   "ignore": [
