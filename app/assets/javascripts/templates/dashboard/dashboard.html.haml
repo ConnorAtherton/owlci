@@ -1,9 +1,10 @@
 %section#dashboard-loading.flex(ng-hide="repos")
   %h5 {{loadingMessage}}
-  %div.ball-triangle-path
-    %span
-    %span
-    %span
+  .loader
+    .ball-triangle-path
+      %span
+      %span
+      %span
 
 %section.repos-container(class="{{styleClass}}")
   %section(ng-repeat="repo in repos")
