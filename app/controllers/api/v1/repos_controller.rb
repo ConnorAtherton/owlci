@@ -1,20 +1,22 @@
 class Api::V1::ReposController < Api::V1::BaseController
 
   def index
-    # TODO issue one db query and compare that way instead
-    @repos = current_user.github.repos
-    @repos.each do |r|
-      if (repo = current_user.repos.find_by_full_name r[:full_name])
-        r[:active] = true
-        r[:id] = repo.id
-      else
-        # because github send their own id
-        r[:id] = nil
-      end
-    end
+    @repos = []
+    active = []
 
-    @repos.select! { |repo| repo.permissions.admin }
-          .sort! { |a, b| b.stargazers_count <=> a.stargazers_count }
+    current_user.github.repos
+      .select! { |repo| repo.permissions.admin }
+      .map do |r|
+         repo = Repo.find_or_initialize_by(full_name: r.full_name)
+         repo.attributes = r.attrs.slice(:ssh_url, :html_url, :stargazers_count, :language, :private)
+         repo.save unless repo.id.nil?
+
+         repo
+      end
+      .sort! { |a, b| b.stargazers_count <=> a.stargazers_count }
+      .each { |r| r.active ? active.push(r) : @repos.push(r) }
+
+    @repos = active.concat @repos
   end
 
   def create

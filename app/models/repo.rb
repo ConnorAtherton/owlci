@@ -5,6 +5,10 @@ class Repo < ActiveRecord::Base
   before_create :setup_hook
   before_destroy :teardown_hook
 
+  scope :order_by_active, -> { order("active DESC") }
+
+  OWL_YML_PATH = '.owl.yml'
+
   def enqueue_build_from_github_webhook(pr)
     @build = builds.create_from_github_webhook(pr)
     if @build
@@ -14,6 +18,12 @@ class Repo < ActiveRecord::Base
 
   def name
     full_name.split("/").last
+  end
+
+  def has_owl_yml?
+    !!(user.github.contents full_name, path: OWL_YML_PATH)
+  rescue Octokit::NotFound
+    nil
   end
 
   private

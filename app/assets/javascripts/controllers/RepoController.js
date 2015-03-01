@@ -13,6 +13,7 @@ angular.module('controllers')
     RepoService.createHook($scope.repo).then(function(data) {
       $scope.repo.active = true;
       $scope.repo.id = data.id;
+      $scope.repo.has_yml = data.has_yml;
     }, function(err) {
       console.log('Err bro,', err);
     }, function() {
@@ -23,10 +24,12 @@ angular.module('controllers')
   function deleteHook() {
     RepoService.deleteHook($scope.repo).then(function(data) {
       $scope.repo.active = false;
+      $scope.repo.has_yml = false;
     }, function(err) {
       console.log('Err bro,', err);
     }, function() {
       $scope.requestInProgress = false;
     });
   }
+
 }]);

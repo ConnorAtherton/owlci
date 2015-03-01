@@ -1,7 +1,7 @@
 collection :@repos
-attributes :name, :full_name, :language, :fork, :ssh_url, :html_url, :private
+attributes :name, :full_name, :language, :ssh_url, :html_url, :private, :active
 node(:stars) { |repo| repo.stargazers_count }
-node(:language_color) { |repo| Languages::Language[repo.language].color rescue '#d2d2d2' }
-node(:active) { |repo| repo.try(:active) || false }
-node(:id) { |repo| repo.try(:id) || nil }
+node(:language_color) { |repo| Languages::Language[repo.language].color rescue '#eaeaea' }
+node(:has_yml) { |repo| repo.user ? repo.has_owl_yml? : nil }
+
 

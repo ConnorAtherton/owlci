@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301021429) do
+ActiveRecord::Schema.define(version: 20150301060123) do
 
   create_table "builds", force: true do |t|
     t.integer  "repo_id"
@@ -37,12 +37,14 @@ ActiveRecord::Schema.define(version: 20150301021429) do
     t.string   "full_name"
     t.boolean  "private"
     t.string   "html_url"
-    t.boolean  "active"
+    t.boolean  "active",           default: false
     t.integer  "user_id"
     t.integer  "hook_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ssh_url"
+    t.integer  "stargazers_count"
+    t.string   "language"
   end
 
   create_table "users", force: true do |t|
