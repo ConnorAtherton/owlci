@@ -72,7 +72,7 @@ class BuildWorker
       thumbs = File.join("shots", "thumbnails", label.to_s)
       res.tap do |h|
         h[label] = {
-          score: File.open(File.join(@build_dir, shots, "#{file_prefix}data.txt")).read,
+          score: File.open(File.join(@build_dir, shots, "#{file_prefix}data.txt")).read.to_f,
           shots_path: File.join(@relative_build_dir, shots),
           thumbs_path: File.join(@relative_build_dir, thumbs),
           head: "#{file_prefix}build_latest.png",
