@@ -57,6 +57,7 @@ Label | Route | Base | Head | Diff
 ----- | ----- | ---- | ---- | ---
 EOF
     results.each do |label, result|
+      thumbs = result[:thumbs_path]
       base = File.join(Rails.application.secrets.site_url, thumbs, result[:base])
       head = File.join(Rails.application.secrets.site_url, thumbs, result[:head])
       diff = File.join(Rails.application.secrets.site_url, thumbs, result[:diff])

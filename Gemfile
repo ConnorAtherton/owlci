@@ -32,7 +32,7 @@ gem 'pry-byebug'
 
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 
 gem 'sidekiq'
 

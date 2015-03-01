@@ -23,7 +23,7 @@ class BuildWorker
         # Setup wraith
         FileUtils.cp(WRAITH_SNAP_JS, @build_dir)
 
-        if Rails.env.development?
+        if Rails.env.development? && false
           @paths = { home: "/", about: "/intl/en/about/" }
           write_config("http://google.com")
           run_wraith("history")
@@ -90,7 +90,7 @@ class BuildWorker
   end
 
   def clone_repo
-    unless system("git clone #{@build.head_ssh_url} ./code")
+    unless system("git clone https://github.com/#{@build.head_repo_full_name}.git ./code")
       # raise BuildError.new("Failed to clone repository")
     end
   end
@@ -118,7 +118,7 @@ class BuildWorker
 
   def run_app
     # Good old harpoon vagrant config ;)
-    if Rails.env.development?
+    if Rails.env.development? && false
       docker_base_path = "/home/core/share/owlci"
     else
       docker_base_path = Rails.root
