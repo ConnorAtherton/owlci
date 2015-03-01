@@ -22,6 +22,7 @@ gem 'rabl-rails'
 # github stuff
 gem "octokit"
 gem "languages"
+gem "sass-globbing"
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development

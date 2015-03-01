@@ -1,0 +1,181 @@
+$primary-color: #2a5d84;
+
+@keyframes scale {
+  0% {
+    transform: scale(0.0);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(0.9, 0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1,1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.1);
+  }
+}
+
+// mixins should be separated out
+@mixin ball-pulse($n:3, $start:0) {
+  @for $i from $start through $n {
+    > span:nth-child(#{$i}) {
+      animation: scale 0.75s ($i * 0.1s) infinite cubic-bezier(.2,.68,.18,1.08);
+    }
+  }
+}
+
+.ball-pulse {
+  @include ball-pulse();
+
+  > span {
+    background-color: $primary-color;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    padding: 0 !important;
+    margin: 0 2px;
+    display: inline-block;
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(75px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInAfter {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+$amount: 50px;
+
+@keyframes ball-triangle-path-1 {
+  33% {
+    transform: translate($amount / 2, -$amount);
+  }
+  66% {
+    transform: translate($amount, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes ball-triangle-path-2 {
+  33% {
+    transform: translate($amount / 2, $amount);
+  }
+  66% {
+    transform: translate(- $amount / 2, $amount);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes ball-triangle-path-3 {
+  33% {
+    transform: translate(-$amount, 0px);
+  }
+  66% {
+    transform: translate(- $amount / 2, -$amount);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@mixin ball-triangle-path($n:3) {
+  $animations: "ball-triangle-path-1" "ball-triangle-path-2" "ball-triangle-path-3";
+
+  @for $i from 1 through $n {
+    > span:nth-child(#{$i}) {
+      animation-name: nth($animations, $i);
+      animation-delay: 0;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+.ball-triangle-path {
+  position: relative;
+  @include ball-triangle-path();
+
+  span {
+    position: absolute;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 1px solid #6a99f0;
+
+    &:nth-of-type(1) {
+      top: $amount;
+    }
+
+    &:nth-of-type(2) {
+      left: $amount / 2;
+    }
+
+    &:nth-of-type(3) {
+      top: $amount;
+      left: $amount;
+    }
+  }
+}

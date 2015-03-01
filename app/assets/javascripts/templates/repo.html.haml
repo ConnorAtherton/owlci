@@ -1,12 +1,26 @@
 %section.container.repo-container(style='border-left: 5px solid {{repo.language_color}}')
   .column.two-thirds
-    %h2 {{repo.name}}
-    %span.stars
-      {{repo.stars}}
-  .column.one-third
-    .button(ng-click="invertWebhook()" ng-class="{{repo.status}}")
-      %span(ng-hide="repo.active") Add hook
-      %span(ng-show="repo.active") Remove hook
+    %h3
+      {{repo.name}}
+      %small.stars
+        {{repo.stars}}
 
+  .column.one-third
+    %div.u-full-width.u-cf(ng-if="repo.active && !requestInProgress")
+      %div.column.one-third.u-pull-right
+        %span.circle-button.danger(ng-click="invertWebhook()") ✖
+      %div.column.one-third.u-pull-right
+        %span.circle-button(ng-if="repo.has_yml") V
+      %div.column.one-third.success.u-pull-right
+        %span.circle-button.caution(ng-if="!repo.has_yml") Y
+
+
+    %div(ng-if="!repo.active")
+      .button.u-pull-right(ng-click="invertWebhook()" ng-class="{{repo.status}}" ng-hide="requestInProgress")
+        %span(ng-hide="repo.active") Add hook
+
+    %div(ng-show="requestInProgress")
+      .button.no-border.u-pull-right
+        %span Working...
 
 

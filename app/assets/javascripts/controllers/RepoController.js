@@ -13,6 +13,7 @@ angular.module('controllers')
     RepoService.createHook($scope.repo).then(function(data) {
       $scope.repo.active = true;
       $scope.repo.id = data.id;
+      $scope.requestInProgress = false;
     }, function(err) {
       console.log('Err bro,', err);
     }, function() {
@@ -23,8 +24,10 @@ angular.module('controllers')
   function deleteHook() {
     RepoService.deleteHook($scope.repo).then(function(data) {
       $scope.repo.active = false;
+      $scope.requestInProgress = false;
     }, function(err) {
-      console.log('Err bro,', err);
+      $scope.repo.active = true;
+      $scope.requestInProgress = false;
     }, function() {
       $scope.requestInProgress = false;
     });
