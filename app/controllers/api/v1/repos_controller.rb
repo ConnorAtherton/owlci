@@ -26,7 +26,7 @@ class Api::V1::ReposController < Api::V1::BaseController
               current_user.repos.find params[:id]
             end
 
-    @builds = @repo.nil? ? [] : @repo.builds
+    @builds = @repo.nil? ? [] : @repo.builds.reverse
   end
 
   def create
