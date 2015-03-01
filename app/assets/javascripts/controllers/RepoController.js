@@ -14,6 +14,7 @@ angular.module('controllers')
       $scope.repo.active = true;
       $scope.repo.id = data.id;
       $scope.repo.has_yml = data.has_yml;
+      $scope.requestInProgress = false;
     }, function(err) {
       console.log('Err bro,', err);
     }, function() {
@@ -25,8 +26,10 @@ angular.module('controllers')
     RepoService.deleteHook($scope.repo).then(function(data) {
       $scope.repo.active = false;
       $scope.repo.has_yml = false;
+      $scope.requestInProgress = false;
     }, function(err) {
-      console.log('Err bro,', err);
+      $scope.repo.active = true;
+      $scope.requestInProgress = false;
     }, function() {
       $scope.requestInProgress = false;
     });

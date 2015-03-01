@@ -11,4 +11,42 @@
   margin: 8px auto;
 }
 
+.circle-button {
+  @include small-text;
 
+  width: 40px;
+  display: inline-block;
+  line-height: 40px;
+  text-align: center;
+  height: 40px;
+  border-radius: 50px;
+  margin: 1.5em;
+  transition: transform 100ms cubic-bezier(0.6, 0, 0.5, 1), box-shadow 233ms cubic-bezier(0.22, 0.44, 0.22, 1.2),border 100ms linear, color 100ms linear,background 100ms linear;
+  border: 1px solid #bbb;
+  color: #555;
+
+  @mixin hover-color($color) {
+    color: $color;
+    box-shadow: 0 0 0 6px rgba($color, 0.15);
+    border: 1px solid $color;
+  }
+
+  &:hover {
+    @include hover-color(#3c94d3);
+
+    background: #fff;
+    cursor: pointer;
+
+    &.caution {
+      @include hover-color(orange);
+    }
+
+    &.danger {
+      @include hover-color(red);
+    }
+
+    &.success {
+      @include hover-color(green);
+    }
+  }
+}

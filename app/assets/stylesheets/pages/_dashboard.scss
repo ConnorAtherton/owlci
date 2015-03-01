@@ -1,9 +1,45 @@
 .repos-container {
   max-width: 650px;
+  transform-origin: 0 0;
+  transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
+  transition: all 400ms linear;
   margin: 0 auto;
+  opacity: 0;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  margin: 2em auto 5em;
+
+  &.reposLoaded {
+    transform: scale(1);
+    transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
+    opacity: 1;
+  }
 
 }
 
+#dashboard-loading {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+}
+
 .repo-container {
-  border-left: 3px solid #f3f3f3;
+  border-left: 3px solid #bbb;
+  border-bottom: #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #bbb;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #bbb;
+  }
+
+  h3 {
+    margin: 0.6em 0;
+  }
+
+  .button {
+    margin-bottom: 0;
+  }
 }
