@@ -13,9 +13,16 @@ angular.module('services')
 
     createHook: function(repo) {
       return repos.post({repo: repo}).then(function(res) {
-        debugger
+        return res;
       });
+    },
+
+    deleteHook: function(repo) {
+      return repo.remove().then(function(res) {
+        return res;
+      })
     }
+
   }
 
 }]);

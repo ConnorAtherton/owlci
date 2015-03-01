@@ -1,10 +1,18 @@
 class Api::V1::ReposController < Api::V1::BaseController
 
   def index
-    # TODO find repos we have a hook set up for
-    # and merge with all repos below
+    # TODO issue one db query and compare that way instead
     @repos = current_user.github.repos
-    @repos.each {|r| r[:active] = true if current_user.repos.find_by_full_name r[:full_name] }
+    @repos.each do |r|
+      if (repo = current_user.repos.find_by_full_name r[:full_name])
+        r[:active] = true
+        r[:id] = repo.id
+      else
+        # because github send their own id
+        r[:id] = nil
+      end
+    end
+
     @repos.select! { |repo| repo.permissions.admin }
           .sort! { |a, b| b.stargazers_count <=> a.stargazers_count }
   end
@@ -21,7 +29,9 @@ class Api::V1::ReposController < Api::V1::BaseController
   end
 
   def destroy
-    repo = current_user.repos.find_by_full_name(params[:repo_full_name])
+    repo = current_user.repos.find params[:id]
+    repo.destroy
+    render nothing: true, status: :ok
   end
 
   private
