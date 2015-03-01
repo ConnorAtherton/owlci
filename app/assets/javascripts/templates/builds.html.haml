@@ -28,11 +28,11 @@
       %span.score.u-pull-right
         Similiarity score: {{100 - res.score}}%
       %span.feedback(ng-switch on="successMeasure(res.score)")
-        %span.circle-button.success.message(ng-switch-when="good")
+        %span.circle-button.success.message.no-hover(ng-switch-when="good")
           %i.fa.fa-thumbs-o-up
-        %span.circle-button.caution.message(ng-switch-when="okay")
+        %span.circle-button.caution.message.no-hover(ng-switch-when="okay")
           %i.fa.fa-exclamation
-        %span.circle-button.danger.message(ng-switch-when="bad")
+        %span.circle-button.danger.message.no-hover(ng-switch-when="bad")
           %i.fa.fa-thumbs-o-down
 
       .img-wrap
@@ -41,3 +41,11 @@
         %img(src="{{res.shots_path}}/{{res.head}}" fullscreen)
       .img-wrap(fullsize)
         %img(src="{{res.shots_path}}/{{res.diff}}" fullscreen)
+
+      .u-full-width.meta
+        .one-third.columns.base_sha
+          {{selectedBuild.base_sha}}
+        .one-third.columns.head_sha
+          {{selectedBuild.head_sha}}
+        .one-third.columns.diff
+          Differential

@@ -40,6 +40,17 @@
       left: 30px;
     }
 
+    .meta {
+      > .one-third {
+        width: 33.3%;
+        float: left;
+        text-align: center;
+        font-size: 10px;
+        color: lighten($gray, 8%);
+        padding: 0.9em 0;
+      }
+    }
+
     .average {
       @include small-text;
       font-size: 14px;

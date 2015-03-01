@@ -11,6 +11,7 @@
   margin: 8px auto;
 }
 
+
 .circle-button {
   @include small-text;
 
@@ -28,6 +29,12 @@
   @mixin color-button($color) {
     color: $color;
     border: 1px solid $color;
+  }
+
+  &.no-hover {
+    &:hover {
+      box-shadow: none !important;
+    }
   }
 
   &.no_yml {
