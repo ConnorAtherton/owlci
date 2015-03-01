@@ -1,6 +1,8 @@
 class Build < ActiveRecord::Base
   belongs_to :repo
-  enum state: [:not_started, :in_progress, :finished]
+
+  enum state: [:not_started, :in_progress, :finished, :failed]
+  serialize :results
 
   def self.create_from_github_webhook(pr)
     Build.create(
@@ -19,7 +21,6 @@ class Build < ActiveRecord::Base
   end
 
   def enqueue_build
-    puts "lol"
-    true
+    BuildWorker.perform_async(id)
   end
 end
