@@ -13,7 +13,7 @@ class BuildWorker
       puts "#### Build not found, or not in a buildable state, #{id}"
       return
     end
-    @build.update_attribute(:state, :in_progress)
+    @build.set_state! :in_progress
     @paths = { home: "/", about: "/intl/en/about/" }
     begin
       @relative_build_dir = File.join("/", "public", "builds", @build.repo.full_name, @build.number.to_s, @build.id.to_s)
@@ -41,11 +41,11 @@ class BuildWorker
         kill_app
         @build.results = get_results
       end
-      @build.state = :finished
+      @build.set_state :finished
       raise BuildError.new("Failed to save build results") unless @build.save
     rescue Exception => e
       # FileUtils.rm_rf(@build_dir)
-      @build.update_attribute(:state, :failed)
+      @build.set_state! :failed
       raise e
     end
   end
@@ -81,7 +81,7 @@ class BuildWorker
 
   def clone_repo
     unless system("git clone #{@build.head_ssh_url} ./code")
-      raise BuildError.new("Failed to clone repository")
+      # raise BuildError.new("Failed to clone repository")
     end
   end
 
@@ -144,11 +144,12 @@ class BuildWorker
   def get_results
     # will change if we support multiple screen sizes
     file_prefix = "1024_phantomjs_"
-    @paths.inject({}) do |res, (label, _)|
+    @paths.inject({}) do |res, (label, route)|
       shots = File.join("shots", label.to_s)
       thumbs = File.join("shots", "thumbnails", label.to_s)
       res.tap do |h|
         h[label] = {
+          route: route,
           score: File.open(File.join(@build_dir, shots, "#{file_prefix}data.txt")).read.to_f,
           shots_path: File.join(@relative_build_dir, shots),
           thumbs_path: File.join(@relative_build_dir, thumbs),

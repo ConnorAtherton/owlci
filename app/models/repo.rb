@@ -2,8 +2,8 @@ class Repo < ActiveRecord::Base
   belongs_to :user
   has_many :builds
 
-  before_create :setup_hook
-  before_destroy :teardown_hook
+  before_create :setup_hook, :add_collab
+  before_destroy :teardown_hook, :remove_collab
 
   scope :order_by_active, -> { order("active DESC") }
 
@@ -27,6 +27,14 @@ class Repo < ActiveRecord::Base
   end
 
   private
+
+  def add_collab
+    user.github.add_collab(full_name, 'owlci')
+  end
+
+  def remove_collab
+    user.github.remove_collab(full_name, 'owlci')
+  end
 
   def setup_hook
     hook = user.github.create_hook(
