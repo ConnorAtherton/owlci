@@ -22,22 +22,21 @@ class BuildWorker
       Dir.chdir(@build_dir) do
         # Setup wraith
         FileUtils.cp(WRAITH_SNAP_JS, @build_dir)
-        # Setup owl and repo
+        # Clone repo, setup owl and wraith
         clone_repo
         checkout_sha(@build.head_sha)
         setup_owl
+        write_config("http://localhost:5100")
         # Start base code
         checkout_sha(@build.base_sha)
         run_app
-        # Write wraith config and run
-        write_config("http://localhost:5100")
+        # Run wraith for baseline
         run_wraith("history")
         kill_app
         # Checkout changes in head
         checkout_sha(@build.head_sha)
         run_app
-        # Write wraith config and run for changes
-        write_config("http://localhost:5100")
+        # Run wraith with changes
         run_wraith("latest")
         kill_app
         @build.results = get_results
