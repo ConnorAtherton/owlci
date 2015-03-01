@@ -2,15 +2,15 @@
   .column.two-thirds
     %h3
       {{repo.name}}
-      %small.stars
-        {{repo.stars}}
+      -# %small.stars
+      -#   {{repo.stars}}
 
   .column.one-third
     %div.u-full-width.u-cf(ng-if="repo.active && !requestInProgress")
       %div.column.one-third.u-pull-right
         %span.circle-button.danger(ng-click="invertWebhook()") ✖
       %div.column.one-third.u-pull-right
-        %span.circle-button(ng-if="repo.has_yml") V
+        %span.circle-button.success(ng-if="repo.has_yml") V
       %div.column.one-third.success.u-pull-right
         %span.circle-button.caution(ng-if="!repo.has_yml") Y
 

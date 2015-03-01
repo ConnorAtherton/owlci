@@ -3,6 +3,11 @@
 //= require restangular/dist/restangular
 //= require angular-rails-templates
 //= require lodash/dist/lodash
+//= require typewriter.js/typewriter.min.js
+//= require misc/animate
+//
+// Code not specific to angular
+//= require custom
 //
 //= require_tree ./templates
 //= require controllers

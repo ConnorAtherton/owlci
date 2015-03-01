@@ -8,6 +8,8 @@
   line-height: 60px;
   padding: 10px;
   vertical-align: middle;
+  position: relative;
+  z-index: 999;
 
   .navbar-default {
     background: transparent;
