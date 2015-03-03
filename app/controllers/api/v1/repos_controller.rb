@@ -20,12 +20,11 @@ class Api::V1::ReposController < Api::V1::BaseController
   end
 
   def show
-    @repo = if params.try(:[], :use_full_name)
-              current_user.repos.find_by full_name: params[:id].sub(/_/, "/")
-            else
-              current_user.repos.find params[:id]
-            end
+    if params[:user] && params[:repo]
+      params[:id] = "#{params[:user]}/#{params[:repo]}"
+    end
 
+    @repo = current_user.repos.find_by_id params[:id]
     @builds = @repo.nil? ? [] : @repo.builds.reverse
   end
 

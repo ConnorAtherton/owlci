@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       resources :repos, only: [:index, :create, :show, :destroy]
       resources :builds, only: :index
       resource  :user_session, only: [:show, :destroy]
+
+      # alias for repos/show
+      get '/:user/:repo', to: 'repos#show'
     end
   end
 
