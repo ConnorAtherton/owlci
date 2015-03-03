@@ -1,4 +1,4 @@
-%section#loading.flex(ng-hide="selectedBuild")
+%section#loading.flex(ng-hide="loaded")
   %h5 {{loadingMessage}}
   .loader
     .ball-triangle-path
@@ -7,7 +7,7 @@
       %span
 
 %section#builds-container(class="{{styleClass}}")
-  .wrapper
+  .wrapper(ng-if="selectedBuild")
     #meta.cf
       .two-thirds.column
         %h2 {{selectedBuild.head_repo_full_name}}
@@ -49,3 +49,6 @@
           {{selectedBuild.head_sha}}
         .one-third.columns.diff
           Differential
+
+  .wrapper(ng-if="!selectedBuild")
+    Oh, no there is no repo with this name

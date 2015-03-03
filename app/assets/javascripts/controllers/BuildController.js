@@ -19,25 +19,15 @@ angular.module('controllers')
   $scope.selectedBuild = undefined;
   $scope.styleClass = undefined;
 
-  var repo_obj = $stateParams.repo_obj;
-  var full_name = ($stateParams.user + '/' + $stateParams.repo).replace('/', '_');
+  var full_name = ($stateParams.user + '/' + $stateParams.repo)
+  var repo_obj = $stateParams.repo_obj || Restangular.one('repos', full_name );
 
-  // not nicest soltuion but it works
-  if (repo_obj !== null) {
-    repo_obj.get().then(function(data) {
-      $scope.builds = data;
-      $scope.selectedBuild = $scope.builds[0];
-      $scope.styleClass = "buildLoaded";
-    });
-  } else {
-    var repo = Restangular.one('repos', full_name );
-
-    repo.get({use_full_name: true}).then(function(data) {
-      $scope.builds = data;
-      $scope.selectedBuild = $scope.builds[0];
-      $scope.styleClass = "buildLoaded";
-    });
-  }
+  repo_obj.get().then(function(data) {
+    $scope.builds = data;
+    $scope.selectedBuild = $scope.builds[0];
+    $scope.loaded = true;
+    $scope.styleClass = "buildLoaded";
+  });
 
   $scope.successMeasure = function(score) {
     score = 100 - score;
