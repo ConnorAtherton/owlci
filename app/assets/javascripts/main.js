@@ -19,15 +19,6 @@ angular.module('owlci', [
       url: "/",
       templateUrl: "home.html",
     })
-    .state('about', {
-      url: "/about",
-      templateUrl: "about.html"
-      // resolve: {
-      //   loggedIn: function (AuthManager) {
-      //     return AuthManager.requireAuthenticatedUser('about');
-      //   }
-      // }
-    })
     .state('404', {
       url: "/404",
       templateUrl: "404.html",
