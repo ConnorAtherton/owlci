@@ -1,6 +1,6 @@
 angular.module('controllers')
 
-.config(['$stateProvider', function myAppConfig($stateProvider) {
+.config(function($stateProvider) {
 
   $stateProvider
     .state('docs', {
@@ -8,8 +8,8 @@ angular.module('controllers')
       controller: 'DocsController',
       templateUrl: "docs.html",
     });
-}])
+})
 
-.controller('DocsController', ['$scope', function($scope) {
+.controller('DocsController', function($scope) {
 
-}]);
+});

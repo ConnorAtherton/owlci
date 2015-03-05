@@ -1,6 +1,6 @@
 angular.module('controllers')
 
-.controller('DashboardController', ['$scope', 'RepoService', function($scope, RepoService) {
+.controller('DashboardController', function($scope, RepoService) {
   $scope.repos = undefined;
 
   RepoService.all().then(function(data) {
@@ -8,4 +8,4 @@ angular.module('controllers')
     $scope.styleClass = "reposLoaded";
   });
 
-}]);
+});

@@ -1,6 +1,4 @@
-angular.module('forms', [
-
-])
+angular.module('forms', [])
 
 .directive('enterSubmit', function() {
   return {
