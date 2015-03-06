@@ -8,8 +8,7 @@ angular.module('owlci', [
   'directives'
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 'RestangularProvider',
-    function myAppConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
 
   $urlRouterProvider.otherwise('/404');
   $locationProvider.html5Mode(true);
@@ -69,7 +68,7 @@ angular.module('owlci', [
   //  Restnagular conf
   //
   RestangularProvider.setBaseUrl('/api/v1/');
-}])
+})
 
 .run(function($rootScope, $state, AuthManager) {
 
@@ -87,7 +86,7 @@ angular.module('owlci', [
 
 })
 
-.controller('AppCtrl', ['$scope', '$state', '$window', 'AuthManager', function AppCtrl($scope, $state, $window, AuthManager) {
+.controller('AppCtrl', function($scope, $state, $window, AuthManager) {
 
   $scope.isAuthenticating = false;
 
@@ -118,7 +117,7 @@ angular.module('owlci', [
 
   $scope.logout = function() {
     AuthManager.logout();
-  }
+  };
 
   $scope.loadingMessage = (function() {
     var messages = ['Hey, we are just loading your github information',
@@ -131,4 +130,4 @@ angular.module('owlci', [
     return messages[Math.floor(Math.random() * messages.length)];
   })();
 
-}]);
+});

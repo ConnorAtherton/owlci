@@ -1,6 +1,6 @@
 angular.module('directives')
 
-.directive('repo', [function() {
+.directive('repo', function() {
   return {
     restrict: 'E',
     templateUrl: 'repo.html',
@@ -14,4 +14,4 @@ angular.module('directives')
       // }
     }
   };
-}])
+});

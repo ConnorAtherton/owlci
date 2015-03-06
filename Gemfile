@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
+gem 'ngannotate-rails'
 gem 'jquery-rails'
 gem "autoprefixer-rails"
 
@@ -24,11 +25,15 @@ gem "octokit"
 gem "languages"
 gem "sass-globbing"
 
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'pry-rails'
-gem 'pry'
-gem 'pry-byebug'
+group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano',  '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bower'
+  gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-byebug'
+end
 
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
 

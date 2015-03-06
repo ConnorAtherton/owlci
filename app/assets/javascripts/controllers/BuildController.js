@@ -1,6 +1,6 @@
 angular.module('controllers')
 
-.config(['$stateProvider', function myAppConfig($stateProvider) {
+.config(function($stateProvider) {
 
   $stateProvider
     .state('builds', {
@@ -11,10 +11,9 @@ angular.module('controllers')
       controller: 'BuildController',
       templateUrl: "builds.html"
     });
-}])
+})
 
-.controller('BuildController', ['$scope', '$stateParams', 'Restangular',
-    function($scope, $stateParams, Restangular) {
+.controller('BuildController', function($scope, $stateParams, Restangular) {
 
   $scope.selectedBuild = undefined;
   $scope.styleClass = undefined;
@@ -38,4 +37,4 @@ angular.module('controllers')
     return "bad";
   }
 
-}]);
+});

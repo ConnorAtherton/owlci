@@ -1,7 +1,6 @@
 angular.module('services')
 
-.factory('AuthManager', ['$http', '$q', '$state', 'RetryQueue', '$location', 'Restangular',
-    function($http, $q, $state, RetryQueue, $location, Restangular) {
+.factory('AuthManager', function($http, $q, $state, RetryQueue, $location, Restangular) {
 
   var userSession = Restangular.one('user_session');
 
@@ -92,4 +91,4 @@ angular.module('services')
   };
 
   return api;
-}]);
+});

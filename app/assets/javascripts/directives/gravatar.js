@@ -1,7 +1,7 @@
 angular.module('directives')
 
 // A simple directive to display a gravatar image given an email
-.directive('gravatar', ['md5', function(md5) {
+.directive('gravatar', function(md5) {
 
   return {
     restrict: 'E',
@@ -46,7 +46,7 @@ angular.module('directives')
       }
     }
   };
-}])
+})
 
 .factory('md5', function() {
   function md5cycle(x, k) {
