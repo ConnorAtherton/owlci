@@ -69,6 +69,7 @@ EOF
         "![Diff](#{diff}) (#{result[:score].to_s}% different)"
       ].join(" | ") + "\n"
     end
+    body += "\n[View it on OwlCI](#{File.join(Rails.application.secrets.site_url, repo.full_name)})"
     OwlCI.github.add_comment(repo.full_name, number, body)
   end
 

@@ -1,6 +1,6 @@
 angular.module('services')
 
-.factory('RepoService', ['Restangular', function(Restangular) {
+.factory('RepoService', function(Restangular) {
 
   var repos = Restangular.all('repos');
 
@@ -25,4 +25,4 @@ angular.module('services')
 
   }
 
-}]);
+});
