@@ -17,6 +17,7 @@
 
 # ignore bower components
 /vendor/assets/components
+.DS_Store
 
 # Environment vars
 .env
