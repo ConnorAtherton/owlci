@@ -59,12 +59,6 @@ angular.module('owlci', [
     };
   });
 
-  // fetch csrf token and pass with every request
-  var headers = $httpProvider.defaults.headers.common;
-  var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  headers['X-CSRF-TOKEN'] = token;
-  headers['X-Requested-With'] = 'XMLHttpRequest';
-
   //
   //  Restnagular conf
   //
