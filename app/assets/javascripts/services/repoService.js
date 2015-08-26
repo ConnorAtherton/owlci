@@ -22,7 +22,5 @@ angular.module('services')
         return res;
       })
     }
-
   }
-
 }]);

@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'jquery-rails'
-gem "autoprefixer-rails"
+gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -30,7 +30,9 @@ gem 'pry-rails'
 gem 'pry'
 gem 'pry-byebug'
 
+# Authentication
 gem 'omniauth-github', :github => 'intridea/omniauth-github'
+gem 'activerecord-session_store'
 
 gem 'dotenv-rails'
 

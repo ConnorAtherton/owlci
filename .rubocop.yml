@@ -76,13 +76,13 @@ Style/BlockEndNewline:
   Description: 'Put end statement of multiline block on its own line.'
   Enabled: true
 
-Style/Blocks:
-  Description: >-
-                Avoid using {...} for multi-line blocks (multiline chaining is
-                always ugly).
-                Prefer {...} over do...end for single-line blocks.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
-  Enabled: true
+# Style/Blocks:
+#   Description: >-
+#                 Avoid using {...} for multi-line blocks (multiline chaining is
+#                 always ugly).
+#                 Prefer {...} over do...end for single-line blocks.
+#   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#single-line-blocks'
+#   Enabled: true
 
 Style/BracesAroundHashParameters:
   Description: 'Enforce braces style around hash parameters.'
@@ -766,8 +766,10 @@ Metrics/CyclomaticComplexity:
   Enabled: true
 
 Metrics/LineLength:
-  Description: 'Limit lines to 80 characters.'
+  Description: 'Limit lines to 100 characters.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#80-character-limits'
+  AllowURI: true
+  Max: 100
   Enabled: true
 
 Metrics/MethodLength:
