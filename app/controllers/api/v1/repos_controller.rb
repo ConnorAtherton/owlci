@@ -1,18 +1,17 @@
 class Api::V1::ReposController < Api::V1::BaseController
-
   def index
     @repos = []
     active = []
 
     current_user.github.repos
       .select! { |repo| repo.permissions.admin }
-      .map do |r|
-         repo = Repo.find_or_initialize_by(full_name: r.full_name)
-         repo.attributes = r.attrs.slice(:ssh_url, :html_url, :stargazers_count, :language, :private)
-         repo.save unless repo.id.nil?
+      .map { |r|
+        repo = Repo.find_or_initialize_by(full_name: r.full_name)
+        repo.attributes = r.attrs.slice(:ssh_url, :html_url, :stargazers_count, :language, :private)
+        repo.save unless repo.id.nil?
 
-         repo
-      end
+        repo
+      }
       .sort! { |a, b| b.stargazers_count <=> a.stargazers_count }
       .each { |r| r.active ? active.push(r) : @repos.push(r) }
 

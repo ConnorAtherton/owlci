@@ -703,11 +703,6 @@ Style/UnneededPercentQ:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-q'
   Enabled: true
 
-Style/UnneededPercentX:
-  Description: 'Checks for %x when `` would do.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-x'
-  Enabled: true
-
 Style/VariableInterpolation:
   Description: >-
                  Don't interpolate global, instance and class variables
