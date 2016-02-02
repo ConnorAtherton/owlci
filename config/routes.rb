@@ -16,5 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :builds, only: :create
+
+  # we could put other status code here too
+  %w(422 500).each do |status_code|
+    get status_code, to: "errors#show", code: status_code
+  end
+
   get '*path' => 'main#index'
 end
