@@ -1,61 +1,38 @@
-.btn {
+.Button {
   border-radius: 3px;
-  margin: 8px 0;
-  padding: 10px 16px;
-}
-
-.btn-full {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 8px auto;
-}
-
-
-.circle-button {
-  @include small-text;
-
-  width: 40px;
+  box-sizing: border-box;
+  border: 1px solid;
   display: inline-block;
-  line-height: 40px;
+  height: 38px;
+  padding: 0 30px;
+  color: $body-color;
+  border-color: $gray;
   text-align: center;
-  height: 40px;
-  border-radius: 50px;
-  margin: 1.5em;
-  transition: transform 100ms cubic-bezier(0.6, 0, 0.5, 1), box-shadow 233ms cubic-bezier(0.22, 0.44, 0.22, 1.2),border 100ms linear, color 100ms linear,background 100ms linear;
-  border: 1px solid #bbb;
-  color: #555;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 0;
 
+  &:hover {
+    border-color: $body-color;
+  }
+
+  &.Button--full {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.Button--circle {
   @mixin color-button($color) {
     color: $color;
     border: 1px solid $color;
-  }
-
-  &.no-hover {
-    &:hover {
-      box-shadow: none !important;
-    }
-  }
-
-  &.no_yml {
-    color: $orange;
-    border: 1px solid $orange;
-  }
-
-  &.caution.message {
-    @include color-button($orange);
-  }
-
-  &.danger.message {
-    @include color-button($red);
-  }
-
-  &.success.message {
-    @include color-button($green);
-  }
-
-  &.message {
-    @include color-button($primary);
   }
 
   @mixin hover-color($color) {
@@ -64,21 +41,49 @@
     border: 1px solid $color;
   }
 
+  width: 40px;
+  height: 40px;
+  line-height: 39px;
+  border-radius: 40px;
+  display: inline-block;
+  text-align: center;
+  transition: transform 100ms cubic-bezier(0.6, 0, 0.5, 1), box-shadow 233ms cubic-bezier(0.22, 0.44, 0.22, 1.2),border 100ms linear, color 100ms linear,background 100ms linear;
+  border: 1px solid $gray;
+  color: $body-color;
+  padding: 0;
+
   &:hover {
     @include hover-color($primary);
 
-    background: #fff;
     cursor: pointer;
+  }
 
-    &.caution {
+  &.no-hover {
+    &:hover {
+      box-shadow: none !important;
+    }
+  }
+
+  &.Button--caution {
+    @include color-button($orange);
+
+    &:hover {
       @include hover-color($orange);
     }
+  }
 
-    &.danger {
+  &.Button--danger {
+    @include color-button($red);
+
+    &:hover {
       @include hover-color($red);
     }
+  }
 
-    &.success {
+  &.Button--success {
+    @include color-button($green);
+
+    &:hover {
       @include hover-color($green);
     }
   }

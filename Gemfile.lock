@@ -258,6 +258,7 @@ DEPENDENCIES
   angular-rails-templates
   angularjs-rails
   autoprefixer-rails
+  byebug
   capistrano-rails
   coffee-rails (~> 4.0.0)
   docker-api

@@ -1,33 +1,25 @@
-%section.container.repo-container(style='border-left: 5px solid {{repo.language_color}}')
-  .column.two-thirds
-    %section(ng-if="repo.active && repo.has_yml")
-      %a(ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
-        %h3
-          {{repo.name}}
-    %section(ng-if="!(repo.active && repo.has_yml)")
-      %h3
-        {{repo.name}}
+%span.u-pull-left
+  %a(ng-if="repo.active && repo.has_yml" ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
+    %span {{repo.name}}
+  %span(ng-if="!(repo.active && repo.has_yml)") {{repo.name}}
 
-  .column.one-third
-    %div.u-full-width.u-cf(ng-if="repo.active && !requestInProgress")
-      %div.column.one-third.u-pull-right
-        %span.circle-button.danger.tipsy-trigger(ng-click="invertWebhook()" tipsy tipsy-dir="s" title="{{deleteTitle}}")
-          %i.fa.fa-close
-      %div.column.one-third.u-pull-right(ng-if="repo.has_yml")
-        %a(ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
-          %span.circle-button.success
-            %i.fa.fa-file-image-o
-      %div.column.one-third.success.u-pull-right
-        %span.circle-button.caution.no_yml(ng-if="!repo.has_yml" tipsy tipsy-dir="s" title="{{noYmlTitle}}" ui-sref="docs")
-          %i.fa.fa-exclamation
+%span.u-pull-right(ng-if="repo.active && !requestInProgress")
+  %span.Button.Button--circle.Button--danger.tipsy-trigger(ng-click="invertWebhook()" tipsy tipsy-dir="s" title="{{deleteTitle}}")
+    %i.fa.fa-close
+  %span.Button.Button--circle.Button--success(ng-if="repo.has_yml" ui-sref="builds({user: repo.user, repo: repo.name, repo_obj: repo})")
+    %a
+      %i.fa.fa-file-image-o
+  %span.Button.Button--circle.Button--caution(ng-if="!repo.has_yml" tipsy tipsy-dir="s" title="{{noYmlTitle}}" ui-sref="docs")
+    %i.fa.fa-exclamation
 
+%span.Button.u-pull-right(ng-if="!repo.active"
+  ng-click="invertWebhook()"
+  ng-class="{{repo.status}}"
+  ng-hide="requestInProgress")
+  Add hook
 
-    %div(ng-if="!repo.active")
-      .button.u-pull-right(ng-click="invertWebhook()" ng-class="{{repo.status}}" ng-hide="requestInProgress")
-        %span(ng-hide="repo.active") Add hook
-
-    %div(ng-show="requestInProgress")
-      .button.no-border.u-pull-right
-        %span Working...
+%span(ng-show="requestInProgress")
+  .Button.no-border.u-pull-right
+    %span Working...
 
 

@@ -1,5 +1,5 @@
 %section#loading.flex(ng-hide="loaded")
-  %h5 {{loadingMessage}}
+  -# %h5 {{loadingMessage}}
   .loader
     .ball-triangle-path
       %span
@@ -28,7 +28,7 @@
       %span.score.u-pull-right
         Similiarity score: {{100 - res.score}}%
       %span.feedback(ng-switch on="successMeasure(res.score)")
-        %span.circle-button.success.message.no-hover(ng-switch-when="good")
+        %span.Button.Button--circle.Button--success.no-hover(ng-switch-when="good")
           %i.fa.fa-thumbs-o-up
         %span.circle-button.caution.message.no-hover(ng-switch-when="okay")
           %i.fa.fa-exclamation

@@ -1,13 +1,17 @@
-html, body {
-  height: 100%;
+html,
+body {
+  min-height: 100vh;
   font-family: 'Lato', sans-serif;
 }
 
 body {
   overflow: scroll;
-  color: rgba(0, 0, 0, 0.75);
+  color: $body-color;
 }
 
+//
+// Helper classes
+//
 .col-center {
   float: none !important;
   margin: 0 auto;

@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   end
 
   resources :builds, only: :create
-  get '*path' => 'main#index'
+  get '*path' => 'main#index', as: :client_route
 end

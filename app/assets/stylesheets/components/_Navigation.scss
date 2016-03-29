@@ -1,0 +1,30 @@
+.Navigation {
+  background: transparent;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  position: relative;
+  max-width: 650px;
+  margin: 0 auto 10px;
+  z-index: $z-highest;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    @include small-text();
+
+    color: $primary;
+  }
+
+  a:not(:last-child) {
+    padding-right: 30px;
+  }
+
+  .button {
+    border-color: $primary;
+  }
+
+  .with-fa-icon {
+    padding-left: 0.4em;
+  }
+}

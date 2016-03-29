@@ -4,18 +4,13 @@
   transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
   margin: 0 auto;
   opacity: 0;
-  border: 1px solid $gray;
-  border-radius: 4px;
-  margin: 6em auto 5em;
+  margin: 2em auto 5em;
   transform: translateY(10px);
 
-  &.reposLoaded {
-    transform: scale(1);
-    transform: translateY(-10px);
-    transition: all 200ms cubic-bezier(.24,.22,.015,1.56), opacity 100ms linear;
+  &.is-loaded {
+    transform: scale(1) translateY(-10px);
     opacity: 1;
   }
-
 }
 
 #loading {
@@ -23,10 +18,6 @@
   margin: 0 auto;
   display: flex;
   margin: 10em auto 5em;
-
-  h5 {
-    padding-right: 1em;
-  }
 
   .loader {
     position: relative;
@@ -36,52 +27,33 @@
   }
 }
 
-.repo-container {
-  border-left: 3px solid $gray;
-  border-bottom: $gray;
+repo {
+  width: 100%;
+  padding: 1.1rem 1.25rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid $gray;
+  border: #e0e0e0 solid;
+  border-radius: 0 0 0 0;
+  border-width: 0 1px 1px;
+  // This is shitty and depends on the height of buttons
+  // but does vertically align the span
+  line-height: 39px;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid $gray;
+  &:first-child {
+    border-radius: 4px 4px 0 0;
+    border-top-width: 1px;
+  }
+
+  &:last-child {
+    border-radius: 0 0 4px 4px;
   }
 
   a {
     text-decoration: none;
   }
 
-  h3 {
-    margin: 0.6em 0;
-  }
-
-  .button {
-    margin-bottom: 0;
+  .Button--circle {
+    margin-left: 12px;
   }
 }
-
-// .frame {
-  // height: 200px;
-  // width: 80%;
-  // border: 1px solid red;
-  // line-height: 200px;
-  // -webkit-perspective: 800px;
-  // -ms-perspective: 800px;
-  // perspective: 800px;
-  // -webkit-perspective-origin: 50% 50%;
-  // perspective-origin: 50% 50%;
-  // -ms-perspective-origin: 50% 50%;
-  // padding: 0;
-// }
-
-// // sly
-// // .frame { width: 100%; height: 160px; padding: 0; }
-// .frame .slidee { margin: 0; padding: 0; height: 100%; list-style: none; }
-// .frame .slidee li { float: left; margin: 0 5px 0 0; padding: 0; width: 120px; height: 100%; }
-// .scrollbar { width: 100%; height: 10px; }
-// .scrollbar .handle {
-  //   width: 100px; /* overriden if dynamicHandle: 1 */
-  //   height: 100%;
-  //   background: #222;
-// }

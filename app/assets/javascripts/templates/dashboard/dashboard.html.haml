@@ -1,5 +1,5 @@
 %section#loading.flex(ng-hide="repos")
-  %h5 {{loadingMessage}}
+  -# %h5 {{loadingMessage}}
   .loader
     .ball-triangle-path
       %span
@@ -7,5 +7,7 @@
       %span
 
 %section.repos-container(class="{{styleClass}}")
-  %section(ng-repeat="repo in repos")
-    %repo(repo="repo")
+  %repo(ng-repeat= "repo in repos"
+        repo="repo"
+        class="u-cf"
+        style='border-left: 5px solid {{repo.language_color}}')

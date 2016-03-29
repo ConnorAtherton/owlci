@@ -11,9 +11,7 @@ class Repo < ActiveRecord::Base
 
   def enqueue_build_from_github_webhook(pr)
     @build = builds.create_from_github_webhook(pr)
-    if @build
-      @build.enqueue_build
-    end
+    @build.enqueue_build if @build
   end
 
   def name
@@ -41,18 +39,23 @@ class Repo < ActiveRecord::Base
       full_name,
       'web',
       {
-        url: File.join(Rails.application.secrets.site_url, "/builds"),
+        url: callback_url,
         content_type: 'json'
       },
       {
-        events: ["pull_request"],
+        events: %w(pull_request),
         active: true
       }
     )
+
     self.hook_id = hook.id
   end
 
   def teardown_hook
     user.github.remove_hook(full_name, hook_id)
+  end
+
+  def callback_url
+    ENV['SITE_URL'] + "/builds"
   end
 end

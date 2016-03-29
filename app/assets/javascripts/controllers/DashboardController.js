@@ -5,7 +5,7 @@ angular.module('controllers')
 
   RepoService.all().then(function(data) {
     $scope.repos = data;
-    $scope.styleClass = "reposLoaded";
+    $scope.styleClass = "is-loaded";
   });
 
 }]);
